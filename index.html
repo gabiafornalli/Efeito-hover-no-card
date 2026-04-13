@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards Literários 3D</title>
+    <style>
+        /* Fundo Azul Royal */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #4169E1;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Círculo Azul Marinho (Aumentado para acomodar cards maiores) */
+        .circulo {
+            width: 600px;
+            height: 600px;
+            background-color: #000080;
+            border-radius: 50%;
+            position: relative;
+            perspective: 1500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            cursor: pointer;
+        }
+
+        /* Estilo base dos cards (Aumentados) */
+        .folha {
+            position: absolute;
+            width: 250px; /* Aumentado de 200px para 250px */
+            height: 350px; /* Aumentado de 280px para 350px */
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.2);
+            transform-style: preserve-3d;
+            box-sizing: border-box;
+            padding: 25px;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Controle do Texto (Escondido inicialmente) */
+        .conteudo {
+            opacity: 0;
+            /* Transição rápida ao tirar o mouse para esconder o texto antes do card fechar */
+            transition: opacity 0.2s ease; 
+        }
+
+        /* Revelar o texto quando o mouse estiver sobre o círculo */
+        .circulo:hover .conteudo {
+            opacity: 1;
+            /* Delay de 0.3s para o texto só aparecer quando as cartas já estiverem quase abertas */
+            transition: opacity 0.4s ease 0.3s; 
+        }
+
+        /* Tipografia interna */
+        .folha h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #000080;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .folha p {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+            text-align: justify;
+            margin: 0;
+        }
+
+        /* ESTADO INICIAL (Deitados, empilhados) */
+        
+        .folha-1 {
+            opacity: 0.3;
+            transform: rotateX(65deg) rotateZ(25deg) translateZ(0px);
+            z-index: 1;
+        }
+
+        .folha-2 {
+            opacity: 0.5;
+            transform: rotateX(65deg) rotateZ(25deg) translateZ(40px); /* Ajuste proporcional */
+            z-index: 2;
+        }
+
+        .folha-3 {
+            opacity: 1;
+            transform: rotateX(65deg) rotateZ(25deg) translateZ(80px); /* Ajuste proporcional */
+            z-index: 3;
+        }
+
+        /* EFEITO HOVER (Espalhar e Levantar) */
+        /* translateX foi aumentado para -280px e 280px para os cards não se esbarrarem */
+
+        .circulo:hover .folha-1 {
+            opacity: 1;
+            transform: translateX(-280px) rotateX(0deg) rotateZ(0deg) translateZ(50px);
+        }
+
+        .circulo:hover .folha-2 {
+            opacity: 1;
+            transform: translateX(0px) rotateX(0deg) rotateZ(0deg) translateZ(50px);
+        }
+
+        .circulo:hover .folha-3 {
+            opacity: 1;
+            transform: translateX(280px) rotateX(0deg) rotateZ(0deg) translateZ(50px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="circulo">
+        
+        <div class="folha folha-1">
+            <div class="conteudo">
+                <h3>O Príncipe Cruel</h3>
+                <p>Jude tinha sete anos quando seus pais foram assassinados e ela e as irmãs foram roubadas para viver na traiçoeira Corte das Fadas. Dez anos depois, Jude quer pertencer a esse mundo, enfrentando as intrigas e o perverso Príncipe Cardan.</p>
+            </div>
+        </div>
+        
+        <div class="folha folha-2">
+            <div class="conteudo">
+                <h3>O Rei Perverso</h3>
+                <p>Após prender Cardan ao trono para manipular o poder nos bastidores, Jude descobre que ser o poder por trás da coroa é perigoso. Com traições à espreita, ela precisa manter o controle sobre o rei, que é tão instável quanto fascinante.</p>
+            </div>
+        </div>
+        
+        <div class="folha folha-3">
+            <div class="conteudo">
+                <h3>A Rainha do Nada</h3>
+                <p>Exilada e vulnerável, Jude é a rainha mortal de Elfhame, mas não tem poder nenhum. Quando sua irmã gêmea corre perigo, ela retorna à Corte, apenas para descobrir uma guerra iminente e ter que enfrentar seus verdadeiros sentimentos.</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
